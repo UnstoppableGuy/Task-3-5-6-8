@@ -6,4 +6,8 @@
     <RootNamespace>Task_3_5_6_8</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Park.cs" />
+  </ItemGroup>
+
 </Project>

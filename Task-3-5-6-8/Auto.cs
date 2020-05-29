@@ -1,60 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Automobile
+namespace Task_3_5_6_8
 {
-    class Auto
+    enum Color
     {
-        private int Max_Speed;
-        private int Weight;
-        public string Car_number { get; set; }
-        public Auto() : this(0, 0, "NaN") { }
-        public Auto(int max_speed) : this(max_speed, 0, "NaN") { }
-        public Auto(int MaxSpeed, int Weight) : this(MaxSpeed, Weight, "NaN") { }
-        public Auto(int max_speed, int weight, /*string mark,*/ string car_number /*int engine_power*/)
+        Black,
+        Red,
+        White,
+        Grey,
+        Green
+    }
+    abstract class Auto
+    {
+        private int maxSpeed;
+        private int currentWeight;        
+        public DateTime YearOfIssue;
+        public Color Color { get; set; }
+        public Auto(int maxspeed, int weight, Color color, DateTime yearofissue)
         {
-            Max_Speed = max_speed;
+            MaxSpeed = maxspeed;
             Weight = weight;
-            Car_number = car_number;
+            Color = color;
+            YearOfIssue = yearofissue;
         }
         public int MaxSpeed
         {
             set
             {
-                if (value <= 0)
-                    Max_Speed = 0;
+                if (value <= 100)
+                    maxSpeed = 100;
+                else if (value > 600)
+                    maxSpeed = 600;
                 else
-                    Max_Speed = value;
+                    maxSpeed = value;
             }
             get
             {
-                return Max_Speed;
+                return maxSpeed;
             }
         }
-        public int _Weight
+        public int Weight
         {
             set
             {
-                if (value <= 0)
-                    Weight = 0;
+                if (value <= 600)
+                    currentWeight = 600;
                 else
-                    Weight = value;
+                    currentWeight = value;
             }
             get
             {
-                return Weight;
+                return currentWeight;
             }
         }
-        public void NewCar(int New_max_speed, int New_weight, string New_car_number)
+        virtual public void ShowPeaceInfo()
         {
-            Max_Speed = New_max_speed;
-            Weight = New_weight;
-            Car_number = New_car_number;
-        }
-        public void SetInfo()
-        {
-            Console.WriteLine($"Max Speed :{Max_Speed}\nWeight {Weight}\n Car number {Car_number}");
+            Console.WriteLine($"Max Speed :{MaxSpeed}\n" +
+                $"Weight: {Weight}\n" +
+                $"Color: {Color}\n" +
+                $"Year of issue: {YearOfIssue}");
         }
     }
 }
